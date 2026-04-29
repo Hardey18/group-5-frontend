@@ -1,119 +1,134 @@
-'use client';
+"use client";
 
-import * as React from 'react';
-import Button from '@mui/material/Button';
-import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
-import CardContent from '@mui/material/CardContent';
-import CardHeader from '@mui/material/CardHeader';
-import Divider from '@mui/material/Divider';
-import FormControl from '@mui/material/FormControl';
-import Grid from '@mui/material/Grid';
-import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
-import OutlinedInput from '@mui/material/OutlinedInput';
-import Select from '@mui/material/Select';
-import { useUser } from '@/hooks/use-user';
+import * as React from "react";
+import Button from "@mui/material/Button";
+import Card from "@mui/material/Card";
+import CardActions from "@mui/material/CardActions";
+import CardContent from "@mui/material/CardContent";
+import CardHeader from "@mui/material/CardHeader";
+import Divider from "@mui/material/Divider";
+import FormControl from "@mui/material/FormControl";
+import Grid from "@mui/material/Grid";
+import InputLabel from "@mui/material/InputLabel";
+import OutlinedInput from "@mui/material/OutlinedInput";
+import { Controller, useForm } from "react-hook-form";
 
-const states = [
-  { value: 'alabama', label: 'Alabama' },
-  { value: 'new-york', label: 'New York' },
-  { value: 'san-francisco', label: 'San Francisco' },
-  { value: 'los-angeles', label: 'Los Angeles' },
-] as const;
+import { useUpdateProfile } from "@/lib/react-query/user.mutation";
+import { useCurrentUser } from "@/lib/react-query/user.queries";
+
+type FormValues = {
+	fullName: string;
+	email: string;
+	phoneNumber: string;
+	userName: string;
+};
 
 export function AccountDetailsForm(): React.JSX.Element {
-  const { user } = useUser();
-  return (
-    <form
-      onSubmit={(event) => {
-        event.preventDefault();
-      }}
-    >
-      <Card>
-        <CardHeader subheader="The information can be edited" title="Profile" />
-        <Divider />
-        <CardContent>
-          <Grid container spacing={3}>
-            <Grid
-              size={{
-                md: 6,
-                xs: 12,
-              }}
-            >
-              <FormControl fullWidth required>
-                <InputLabel>Name</InputLabel>
-                <OutlinedInput defaultValue={user.name} label="First name" name="name" />
-              </FormControl>
-            </Grid>
-            {/* <Grid
-              size={{
-                md: 6,
-                xs: 12,
-              }}
-            >
-              <FormControl fullWidth required>
-                <InputLabel>Last name</InputLabel>
-                <OutlinedInput defaultValue="Adewale" label="Last name" name="lastName" />
-              </FormControl>
-            </Grid> */}
-            <Grid
-              size={{
-                md: 6,
-                xs: 12,
-              }}
-            >
-              <FormControl fullWidth required>
-                <InputLabel>Email address</InputLabel>
-                <OutlinedInput defaultValue={user.email} label="Email address" name="email" />
-              </FormControl>
-            </Grid>
-            <Grid
-              size={{
-                md: 6,
-                xs: 12,
-              }}
-            >
-              <FormControl fullWidth>
-                <InputLabel>Phone number</InputLabel>
-                <OutlinedInput defaultValue={user.phoneNumber} label="Phone number" name="phone" type="tel" />
-              </FormControl>
-            </Grid>
-            <Grid
-              size={{
-                md: 6,
-                xs: 12,
-              }}
-            >
-              <FormControl fullWidth>
-                <InputLabel>State</InputLabel>
-                <Select defaultValue="New York" label="State" name="state" variant="outlined">
-                  {states.map((option) => (
-                    <MenuItem key={option.value} value={option.value}>
-                      {option.label}
-                    </MenuItem>
-                  ))}
-                </Select>
-              </FormControl>
-            </Grid>
-            <Grid
-              size={{
-                md: 6,
-                xs: 12,
-              }}
-            >
-              <FormControl fullWidth>
-                <InputLabel>City</InputLabel>
-                <OutlinedInput label="City" />
-              </FormControl>
-            </Grid>
-          </Grid>
-        </CardContent>
-        <Divider />
-        <CardActions sx={{ justifyContent: 'flex-end' }}>
-          <Button variant="contained">Save details</Button>
-        </CardActions>
-      </Card>
-    </form>
-  );
+	const { data: user } = useCurrentUser();
+
+	const { mutate: updateUser, isPending } = useUpdateProfile();
+
+	const { control, handleSubmit, reset } = useForm<FormValues>({
+		defaultValues: {
+			fullName: "",
+			email: "",
+			phoneNumber: "",
+			userName: "",
+		},
+	});
+
+	// 🔥 Sync form with fetched user
+	React.useEffect(() => {
+		if (user) {
+			reset({
+				fullName: user.fullName || "",
+				email: user.email || "",
+				phoneNumber: user.phoneNumber || "",
+				userName: user.userName || "",
+			});
+		}
+	}, [user, reset]);
+	console.log("USER>>>", user);
+
+	const onSubmit = (values: FormValues) => {
+		console.log("FORM VALUES", values);
+		updateUser(
+			{
+				userId: user.userId,
+				fullName: values.fullName,
+				phoneNumber: values.phoneNumber,
+				profilePhotoUrl: "https://avatars.githubusercontent.com/u/91216500?v=4",
+			},
+			{
+				onSuccess: () => {
+					const updatedUser = {
+						...user,
+						fullName: values.fullName,
+						phoneNumber: values.phoneNumber,
+					};
+
+					localStorage.setItem("user", JSON.stringify(updatedUser));
+				},
+			}
+		);
+	};
+
+	return (
+		<form onSubmit={handleSubmit(onSubmit)}>
+			<Card>
+				<CardHeader subheader="The information can be edited" title="Profile" />
+				<Divider />
+				<CardContent>
+					<Grid container spacing={3}>
+						<Controller
+							name="fullName"
+							control={control}
+							render={({ field }) => (
+								<FormControl fullWidth required>
+									<InputLabel>Name</InputLabel>
+									<OutlinedInput {...field} value={field.value || ""} label="Name" />
+								</FormControl>
+							)}
+						/>
+						<Controller
+							name="userName"
+							control={control}
+							render={({ field }) => (
+								<FormControl fullWidth required>
+									<InputLabel>User Name</InputLabel>
+									<OutlinedInput {...field} label="User Name" value={field.value || ""} disabled />
+								</FormControl>
+							)}
+						/>
+						<Controller
+							name="email"
+							control={control}
+							render={({ field }) => (
+								<FormControl fullWidth required>
+									<InputLabel>Email Address</InputLabel>
+									<OutlinedInput {...field} value={field.value || ""} label="Email" disabled />
+								</FormControl>
+							)}
+						/>
+						<Controller
+							name="phoneNumber"
+							control={control}
+							render={({ field }) => (
+								<FormControl fullWidth>
+									<InputLabel>Phone</InputLabel>
+									<OutlinedInput {...field} value={field.value || ""} label="Phone" />
+								</FormControl>
+							)}
+						/>
+					</Grid>
+				</CardContent>
+				<Divider />
+				<CardActions sx={{ justifyContent: "flex-end" }}>
+					<Button type="submit" disabled={isPending} variant="contained">
+						{isPending ? "Saving..." : "Save details"}
+					</Button>
+				</CardActions>
+			</Card>
+		</form>
+	);
 }

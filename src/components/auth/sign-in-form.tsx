@@ -20,8 +20,9 @@ import { z as zod } from "zod";
 
 import { paths } from "@/paths";
 import { useLogin } from "@/lib/react-query/auth.mutations";
-// import { authClient } from '@/lib/auth/client';
 import { useUser } from "@/hooks/use-user";
+import { getUserIdFromToken } from "@/lib/utils/decode-token";
+import { getUserProfile } from "@/lib/api/services/user-service";
 
 const schema = zod.object({
 	email: zod.string().min(1, { message: "Email is required" }).email(),
@@ -39,15 +40,13 @@ export function SignInForm(): React.JSX.Element {
 
 	const [showPassword, setShowPassword] = React.useState<boolean>();
 
-	// const [isPending, setIsPending] = React.useState<boolean>(false);
-
 	const {
 		control,
 		handleSubmit,
 		setError,
 		formState: { errors },
 	} = useForm<Values>({ defaultValues, resolver: zodResolver(schema) });
-  console.log("ERRORS>>>", errors)
+	console.log("ERRORS>>>", errors);
 
 	const { mutate: loginUser, isPending } = useLogin();
 
@@ -55,19 +54,27 @@ export function SignInForm(): React.JSX.Element {
 		(values: Values): void => {
 			loginUser(values, {
 				onSuccess: async (data) => {
-          console.log("DATA>>>", data)
-					// store token
-					localStorage.setItem("token", data.token);
+					console.log("DATA>>>", data);
+					const { token } = data;
 
-					// optional: store user (quick access)
-					localStorage.setItem("user", JSON.stringify(data.user));
+					// store token
+					localStorage.setItem("token", token);
+
+					// decode token → get userId
+					const userId = getUserIdFromToken(token);
+
+					// fetch profile
+					const userProfile = await getUserProfile(userId);
+
+					// store user
+					localStorage.setItem("user", JSON.stringify(userProfile));
 
 					await checkSession?.();
-					router.refresh();
-          router.push("/dashboard");
+
+					router.push("/dashboard");
 				},
 				onError: (error: any) => {
-          console.log("ERROR", error)
+					console.log("ERROR", error);
 					setError("root", {
 						type: "server",
 						message: error.message || "Login failed",
@@ -156,7 +163,7 @@ export function SignInForm(): React.JSX.Element {
 				<Typography component="span" sx={{ fontWeight: 700 }} variant="inherit">
 					password{" "}
 				</Typography>
-        to sign in!
+				to sign in!
 			</Alert>
 		</Stack>
 	);

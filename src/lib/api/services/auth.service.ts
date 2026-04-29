@@ -1,16 +1,24 @@
 // lib/api/services/auth.service.ts
 import { api } from "../axios";
 
-export const login = async (data: { email: string; password: string }) => {
-	const res = await api.post("/auth/login", data);
+export const login = async (data: {
+  email: string;
+  password: string;
+}) => {
+  const res = await api.post("/User/login", {
+    emailOrUserName: data.email,
+    password: data.password,
+    clientId: "web",
+  });
 
-	const { accessToken, user, message } = res.data;
+  if (!res.data.success || !res.data.data?.succeeded) {
+    throw new Error(res.data.message || "Login failed");
+  }
 
-	return {
-		token: accessToken,
-		user,
-		message,
-	};
+  return {
+    token: res.data.data.token,
+    refreshToken: res.data.data.refreshToken,
+  };
 };
 
 export const register = async (data: {

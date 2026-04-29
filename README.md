@@ -18,6 +18,7 @@ Within the download you'll find the following directories and files:
 ├── README.md
 ├── tsconfig.json
 ├── public
+├── providers
 └── src
 	├── components
 	├── contexts

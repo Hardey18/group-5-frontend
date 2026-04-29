@@ -7,14 +7,10 @@ import createCache from "@emotion/cache";
 import type { EmotionCache, Options as OptionsOfCreateCache } from "@emotion/cache";
 import { CacheProvider as DefaultCacheProvider } from "@emotion/react";
 
-// https://github.com/garronej/tss-react/blob/main/src/next/appDir.tsx
-
 export type EmotionCacheProviderProps = {
-	/** This is the options passed to createCache() from 'import createCache from "@emotion/cache"' */
 	options: Omit<OptionsOfCreateCache, "insertionPoint"> & {
 		prepend?: boolean;
 	};
-	/** By default <CacheProvider /> from 'import { CacheProvider } from "@emotion/react"' */
 	CacheProvider?: React.Provider<EmotionCache>;
 	children: ReactNode;
 };

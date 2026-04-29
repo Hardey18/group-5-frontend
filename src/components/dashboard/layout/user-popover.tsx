@@ -11,11 +11,8 @@ import Typography from "@mui/material/Typography";
 import { GearSixIcon } from "@phosphor-icons/react/dist/ssr/GearSix";
 import { SignOutIcon } from "@phosphor-icons/react/dist/ssr/SignOut";
 import { UserIcon } from "@phosphor-icons/react/dist/ssr/User";
-// import { useQueryClient } from "@tanstack/react-query";
-// const queryClient = useQueryClient();
 
 import { paths } from "@/paths";
-// import { authClient } from '@/lib/auth/client';
 import { logger } from "@/lib/default-logger";
 import { useUser } from "@/hooks/use-user";
 
@@ -32,16 +29,10 @@ export function UserPopover({ anchorEl, onClose, open }: UserPopoverProps): Reac
   console.log("NEW USER HERE", user)
 	const handleSignOut = React.useCallback(async (): Promise<void> => {
 		try {
-			// remove auth data
 			localStorage.removeItem("token");
 			localStorage.removeItem("user");
 
-			// reset user state
 			await checkSession?.();
-
-      // queryClient.clear();
-
-			// redirect to login
 			router.push("/auth/sign-in");
 		} catch (error) {
 			logger.error("Sign out error", error);
