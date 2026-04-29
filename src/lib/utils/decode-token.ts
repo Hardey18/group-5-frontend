@@ -1,5 +1,3 @@
-/* eslint-disable import/no-named-as-default */
-// lib/utils/decode-token.ts
 import { jwtDecode } from "jwt-decode";
 
 type JwtPayload = {

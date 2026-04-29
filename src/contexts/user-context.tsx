@@ -34,7 +34,7 @@ export function UserProvider({ children }: UserProviderProps): React.JSX.Element
 				return;
 			}
 
-      const user = JSON.parse(storedUser);
+			const user = JSON.parse(storedUser);
 
 			setState({
 				user,
