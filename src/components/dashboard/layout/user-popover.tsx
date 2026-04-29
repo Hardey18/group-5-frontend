@@ -1,5 +1,5 @@
 import * as React from "react";
-import RouterLink from "next/link";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import Box from "@mui/material/Box";
 import Divider from "@mui/material/Divider";
@@ -26,7 +26,7 @@ export function UserPopover({ anchorEl, onClose, open }: UserPopoverProps): Reac
 	const { checkSession, user } = useUser();
 	const router = useRouter();
 
-  console.log("NEW USER HERE", user)
+	console.log("NEW USER HERE", user);
 	const handleSignOut = React.useCallback(async (): Promise<void> => {
 		try {
 			localStorage.removeItem("token");
@@ -55,18 +55,22 @@ export function UserPopover({ anchorEl, onClose, open }: UserPopoverProps): Reac
 			</Box>
 			<Divider />
 			<MenuList disablePadding sx={{ p: "8px", "& .MuiMenuItem-root": { borderRadius: 1 } }}>
-				<MenuItem component={RouterLink} href={paths.dashboard.settings} onClick={onClose}>
-					<ListItemIcon>
-						<GearSixIcon fontSize="var(--icon-fontSize-md)" />
-					</ListItemIcon>
-					Settings
-				</MenuItem>
-				<MenuItem component={RouterLink} href={paths.dashboard.account} onClick={onClose}>
-					<ListItemIcon>
-						<UserIcon fontSize="var(--icon-fontSize-md)" />
-					</ListItemIcon>
-					Profile
-				</MenuItem>
+				<Link href={paths.dashboard.settings}>
+					<MenuItem onClick={onClose}>
+						<ListItemIcon>
+							<GearSixIcon fontSize="var(--icon-fontSize-md)" />
+						</ListItemIcon>
+						Settings
+					</MenuItem>
+				</Link>
+				<Link href={paths.dashboard.account}>
+					<MenuItem onClick={onClose}>
+						<ListItemIcon>
+							<UserIcon fontSize="var(--icon-fontSize-md)" />
+						</ListItemIcon>
+						Profile
+					</MenuItem>
+				</Link>
 				<MenuItem onClick={handleSignOut}>
 					<ListItemIcon>
 						<SignOutIcon fontSize="var(--icon-fontSize-md)" />

@@ -1,7 +1,7 @@
 'use client';
 
 import * as React from 'react';
-import RouterLink from 'next/link';
+import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import Box from '@mui/material/Box';
 // import Button from '@mui/material/Button';
@@ -58,9 +58,11 @@ export function MobileNav({ open, onClose }: MobileNavProps): React.JSX.Element 
       open={open}
     >
       <Stack spacing={2} sx={{ p: 3 }}>
-        <Box component={RouterLink} href={paths.home} sx={{ display: 'inline-flex' }}>
+        <Link href={paths.home}>
+        <Box sx={{ display: 'inline-flex' }}>
           <Logo color="light" height={32} width={122} />
         </Box>
+        </Link>
         <Box
           sx={{
             alignItems: 'center',
@@ -121,7 +123,7 @@ function NavItem({ disabled, external, href, icon, matcher, pathname, title }: N
       <Box
         {...(href
           ? {
-              component: external ? 'a' : RouterLink,
+              component: external ? 'a' : Link,
               href,
               target: external ? '_blank' : undefined,
               rel: external ? 'noreferrer' : undefined,
