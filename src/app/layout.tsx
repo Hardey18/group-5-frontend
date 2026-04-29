@@ -3,7 +3,7 @@ import type { Viewport } from "next";
 
 import "@/styles/global.css";
 
-import ReactQueryProvider from "@/providers/ReactQueryProvider";
+import ReactQueryProvider from "@/providers/react-query-provicer";
 
 import { UserProvider } from "@/contexts/user-context";
 import { LocalizationProvider } from "@/components/core/localization-provider";

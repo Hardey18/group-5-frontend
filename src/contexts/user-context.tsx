@@ -6,7 +6,7 @@ import type { User } from "@/types/user";
 import { logger } from "@/lib/default-logger";
 
 export interface UserContextValue {
-	user: User;
+	user: User | null;
 	error: string | null;
 	isLoading: boolean;
 	checkSession?: () => Promise<void>;

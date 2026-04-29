@@ -37,7 +37,7 @@ export const forgotPassword = async (email: string) => {
 	return res.data;
 };
 
-export const changePassword = async (data: any) => {
+export const changePassword = async (data: { currentPassword: string; newPassword: string }) => {
 	const res = await api.post("/auth/changePassword", data);
 	return res.data;
 };

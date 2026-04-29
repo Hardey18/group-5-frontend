@@ -73,8 +73,7 @@ export function SignInForm(): React.JSX.Element {
 
 					router.push("/dashboard");
 				},
-				onError: (error: any) => {
-					console.log("ERROR", error);
+				onError: (error: { message: string }) => {
 					setError("root", {
 						type: "server",
 						message: error.message || "Login failed",

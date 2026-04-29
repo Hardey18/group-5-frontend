@@ -51,7 +51,7 @@ export function SignUpForm(): React.JSX.Element {
 					router.refresh();
 					router.push("/auth/login");
 				},
-				onError: (error: any) => {
+				onError: (error: { message: string }) => {
 					console.log("ERROR", error);
 					setError("root", {
 						type: "server",
