@@ -2,7 +2,7 @@
   "name": "group-5-frontend",
   "version": "4.1.0",
   "author": "Group 5",
-  "licence": "MIT",
+  "license": "MIT",
   "private": false,
   "scripts": {
     "dev": "next dev",
