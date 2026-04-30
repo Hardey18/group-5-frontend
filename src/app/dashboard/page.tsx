@@ -1,177 +1,130 @@
-import * as React from 'react';
-import type { Metadata } from 'next';
-import Grid from '@mui/material/Grid';
+"use client";
 
-import { config } from '@/config';
-import { Budget } from '@/components/dashboard/overview/budget';
-import { Sales } from '@/components/dashboard/overview/sales';
-import { TasksProgress } from '@/components/dashboard/overview/tasks-progress';
-import { TotalCustomers } from '@/components/dashboard/overview/total-customers';
-import { TotalProfit } from '@/components/dashboard/overview/total-profit';
-import { Traffic } from '@/components/dashboard/overview/traffic';
+import * as React from "react";
+import { useRouter } from "next/navigation";
+import Box from "@mui/material/Box";
+import Stack from "@mui/material/Stack";
+import Grid from "@mui/material/Grid";
+import Typography from "@mui/material/Typography";
+import Alert from "@mui/material/Alert";
+import CircularProgress from "@mui/material/CircularProgress";
 
-export const metadata = { title: `Overview | Dashboard | ${config.site.name}` } satisfies Metadata;
+import { useAnalyticsDashboard } from "@/lib/react-query/analytics.queries";
+import { KpiCard } from "@/components/dashboard/analytics/kpi-card";
+import { DaysSelector } from "@/components/dashboard/analytics/days-selector";
+import { DailyVolumeChart } from "@/components/dashboard/analytics/daily-volume-chart";
+import { SentimentBreakdown } from "@/components/dashboard/analytics/sentiment-breakdown";
+import { CategoryBreakdown } from "@/components/dashboard/analytics/category-breakdown";
+import { UnresolvedByCategory } from "@/components/dashboard/analytics/unresolved-by-category";
 
-export default function Page(): React.JSX.Element {
+export default function AnalyticsDashboardPage(): React.JSX.Element {
+  // const router = useRouter();
+  const [days, setDays] = React.useState<number>(30);
+
+  const { data: response, isLoading, error } = useAnalyticsDashboard(days);
+
+  // React.useEffect(() => {
+  //   if (error && ((error as any)?.status === 401 || (error as any)?.status === 403 || (error as any)?.response?.status === 401)) {
+  //     router.push("/auth/sign-in");
+  //   }
+  // }, [error, router]);
+
+  if (isLoading) {
+    return (
+      <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", minHeight: "50vh" }}>
+        <CircularProgress />
+      </Box>
+    );
+  }
+
+  // if (error || (response && !response.success)) {
+  //   return (
+  //     <Stack spacing={3}>
+  //       <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+  //         <div>
+  //           <Typography variant="h4">Analytics Dashboard</Typography>
+  //           <Typography color="text.secondary">Admin & Supervisor View</Typography>
+  //         </div>
+  //         <DaysSelector days={days} onChange={setDays} />
+  //       </Box>
+  //       <Alert severity="error">
+  //         Failed to load analytics data. {(error as any)?.message || response?.message || "Please check your permissions and try again."}
+  //       </Alert>
+  //     </Stack>
+  //   );
+  // }
+
+  const data = response?.data;
+  console.log("DATA2", data)
+  // if (!data) return <div />;
+
   return (
-    <Grid container spacing={3}>
-      <Grid
-        size={{
-          lg: 3,
-          sm: 6,
-          xs: 12,
-        }}
-      >
-        <Budget diff={12} trend="up" sx={{ height: '100%' }} value="$24k" />
+    <Stack spacing={4}>
+      <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: 2 }}>
+        <div>
+          <Typography variant="h4">Analytics Dashboard</Typography>
+          <Typography color="text.secondary" variant="body1">Admin & Supervisor View</Typography>
+        </div>
+        <DaysSelector days={days} onChange={setDays} />
+      </Box>
+
+      <Grid container spacing={3}>
+        <Grid size={{ xs: 6, md: 3 }}>
+          <KpiCard title="Total Calls" value={data?.totalCalls} />
+        </Grid>
+        <Grid size={{ xs: 6, md: 3 }}>
+          <KpiCard title="Active Calls" value={data?.activeCalls} accentColor="info" />
+        </Grid>
+        <Grid size={{ xs: 6, md: 3 }}>
+          <KpiCard title="Ended Calls" value={data?.endedCalls} accentColor="secondary" />
+        </Grid>
+        <Grid size={{ xs: 6, md: 3 }}>
+          <KpiCard title="Total Unique Clients" value={data?.totalUniqueClients} />
+        </Grid>
+        <Grid size={{ xs: 6, md: 3 }}>
+          <KpiCard title="Issues Resolved" value={data?.issuesResolved} accentColor="success" />
+        </Grid>
+        <Grid size={{ xs: 6, md: 3 }}>
+          <KpiCard title="Issues Pending" value={data?.issuesPending} accentColor="error" />
+        </Grid>
+        <Grid size={{ xs: 6, md: 3 }}>
+          <KpiCard 
+            title="Resolution Rate" 
+            value={`${data?.resolutionRate?.toFixed(1) || 0}%`}
+            subtitle={
+              <Box sx={{ height: 4, width: '100%', bgcolor: 'action.hover', mt: 1, borderRadius: 1, overflow: 'hidden' }}>
+                <Box sx={{ height: '100%', width: `${data?.resolutionRate || 0}%`, bgcolor: 'success.main' }} />
+              </Box>
+            }
+          />
+        </Grid>
+        <Grid size={{ xs: 6, md: 3 }}>
+          <KpiCard 
+            title="Avg Satisfaction" 
+            value={data?.averageSatisfactionRating ? `${data?.averageSatisfactionRating.toFixed(1)}★` : "N/A"} 
+          />
+        </Grid>
       </Grid>
-      <Grid
-        size={{
-          lg: 3,
-          sm: 6,
-          xs: 12,
-        }}
-      >
-        <TotalCustomers diff={16} trend="down" sx={{ height: '100%' }} value="1.6k" />
-      </Grid>
-      <Grid
-        size={{
-          lg: 3,
-          sm: 6,
-          xs: 12,
-        }}
-      >
-        <TasksProgress sx={{ height: '100%' }} value={75.5} />
-      </Grid>
-      <Grid
-        size={{
-          lg: 3,
-          sm: 6,
-          xs: 12,
-        }}
-      >
-        <TotalProfit sx={{ height: '100%' }} value="$15k" />
-      </Grid>
-      <Grid
-        size={{
-          lg: 8,
-          xs: 12,
-        }}
-      >
-        <Sales
-          chartSeries={[
-            { name: 'This year', data: [18, 16, 5, 8, 3, 14, 14, 16, 17, 19, 18, 20] },
-            { name: 'Last year', data: [12, 11, 4, 6, 2, 9, 9, 10, 11, 12, 13, 13] },
-          ]}
-          sx={{ height: '100%' }}
+
+      <Box sx={{ maxWidth: 300 }}>
+        <KpiCard 
+          title="Avg Call Duration" 
+          value={data?.averageCallDurationMinutes ? `${data?.averageCallDurationMinutes.toFixed(1)} min` : "N/A"} 
         />
+      </Box>
+
+      <DailyVolumeChart data={data?.dailyCallVolume || {}} />
+
+      <SentimentBreakdown counts={data?.callsBySentiment || {}} percentages={data?.sentimentPercentages || {}} />
+
+      <Grid container spacing={3}>
+        <Grid size={{ xs: 12, lg: 6 }}>
+          <CategoryBreakdown counts={data?.callsByCategory || {}} percentages={data?.categoryPercentages || {}} />
+        </Grid>
+        <Grid size={{ xs: 12, lg: 6 }}>
+          <UnresolvedByCategory data={data?.unresolvedByCategory || {}} />
+        </Grid>
       </Grid>
-      <Grid
-        size={{
-          lg: 4,
-          md: 6,
-          xs: 12,
-        }}
-      >
-        <Traffic chartSeries={[63, 15, 22]} labels={['Desktop', 'Tablet', 'Phone']} sx={{ height: '100%' }} />
-      </Grid>
-      {/* <Grid
-        size={{
-          lg: 4,
-          md: 6,
-          xs: 12,
-        }}
-      >
-        <LatestProducts
-          products={[
-            {
-              id: 'PRD-005',
-              name: 'Soja & Co. Eucalyptus',
-              image: '/assets/product-5.png',
-              updatedAt: dayjs().subtract(18, 'minutes').subtract(5, 'hour').toDate(),
-            },
-            {
-              id: 'PRD-004',
-              name: 'Necessaire Body Lotion',
-              image: '/assets/product-4.png',
-              updatedAt: dayjs().subtract(41, 'minutes').subtract(3, 'hour').toDate(),
-            },
-            {
-              id: 'PRD-003',
-              name: 'Ritual of Sakura',
-              image: '/assets/product-3.png',
-              updatedAt: dayjs().subtract(5, 'minutes').subtract(3, 'hour').toDate(),
-            },
-            {
-              id: 'PRD-002',
-              name: 'Lancome Rouge',
-              image: '/assets/product-2.png',
-              updatedAt: dayjs().subtract(23, 'minutes').subtract(2, 'hour').toDate(),
-            },
-            {
-              id: 'PRD-001',
-              name: 'Erbology Aloe Vera',
-              image: '/assets/product-1.png',
-              updatedAt: dayjs().subtract(10, 'minutes').toDate(),
-            },
-          ]}
-          sx={{ height: '100%' }}
-        />
-      </Grid>
-      <Grid
-        size={{
-          lg: 8,
-          md: 12,
-          xs: 12,
-        }}
-      >
-        <LatestOrders
-          orders={[
-            {
-              id: 'ORD-007',
-              customer: { name: 'Ekaterina Tankova' },
-              amount: 30.5,
-              status: 'pending',
-              createdAt: dayjs().subtract(10, 'minutes').toDate(),
-            },
-            {
-              id: 'ORD-006',
-              customer: { name: 'Cao Yu' },
-              amount: 25.1,
-              status: 'delivered',
-              createdAt: dayjs().subtract(10, 'minutes').toDate(),
-            },
-            {
-              id: 'ORD-004',
-              customer: { name: 'Alexa Richardson' },
-              amount: 10.99,
-              status: 'refunded',
-              createdAt: dayjs().subtract(10, 'minutes').toDate(),
-            },
-            {
-              id: 'ORD-003',
-              customer: { name: 'Anje Keizer' },
-              amount: 96.43,
-              status: 'pending',
-              createdAt: dayjs().subtract(10, 'minutes').toDate(),
-            },
-            {
-              id: 'ORD-002',
-              customer: { name: 'Clarke Gillebert' },
-              amount: 32.54,
-              status: 'delivered',
-              createdAt: dayjs().subtract(10, 'minutes').toDate(),
-            },
-            {
-              id: 'ORD-001',
-              customer: { name: 'Adam Denisov' },
-              amount: 16.76,
-              status: 'delivered',
-              createdAt: dayjs().subtract(10, 'minutes').toDate(),
-            },
-          ]}
-          sx={{ height: '100%' }}
-        />
-      </Grid> */}
-    </Grid>
+    </Stack>
   );
 }
