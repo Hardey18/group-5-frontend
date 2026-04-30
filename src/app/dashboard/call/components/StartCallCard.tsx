@@ -9,6 +9,7 @@ import CircularProgress from "@mui/material/CircularProgress";
 import Box from "@mui/material/Box";
 import Alert from "@mui/material/Alert";
 import { api } from "@/lib/api/axios";
+import { useCurrentUser } from "@/lib/react-query/user.queries";
 
 interface StartCallCardProps {
   onCallStarted: (callId: string) => void;
@@ -18,6 +19,10 @@ export function StartCallCard({ onCallStarted }: StartCallCardProps) {
   const [userId, setUserId] = useState<string>("Unknown");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+
+  const { data: user } = useCurrentUser();
+
+  console.log("USER>>>", user);
 
   useEffect(() => {
     try {
@@ -35,8 +40,8 @@ export function StartCallCard({ onCallStarted }: StartCallCardProps) {
     setLoading(true);
     setError(null);
     try {
-      const payload = { clientId: userId === "Unknown" ? "00000000-0000-0000-0000-000000000000" : userId };
-      const res = await api.post("/call/start", payload);
+      const payload = { clientId: user?.userId };
+      const res = await api.post("/Call/start", payload);
       
       if (res.data && res.data.success) {
         onCallStarted(res.data.data.id);
