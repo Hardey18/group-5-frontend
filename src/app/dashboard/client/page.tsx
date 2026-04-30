@@ -22,16 +22,16 @@ export default function ClientDashboardPage(): React.JSX.Element {
     );
   }
 
-  if (error || (response && !response.success)) {
-    return (
-      <Stack spacing={3}>
-        <Typography variant="h4">Client Dashboard</Typography>
-        <Alert severity="error">
-          Failed to load dashboard data. {(error as any)?.message || response?.message || "Please log in and try again."}
-        </Alert>
-      </Stack>
-    );
-  }
+  // if (error || (response && !response.success)) {
+  //   return (
+  //     <Stack spacing={3}>
+  //       <Typography variant="h4">Client Dashboard</Typography>
+  //       <Alert severity="error">
+  //         Failed to load dashboard data. {(error as any)?.message || response?.message || "Please log in and try again."}
+  //       </Alert>
+  //     </Stack>
+  //   );
+  // }
 
   const { callHistory = [], requestHistory = [] } = response?.data || {};
 
