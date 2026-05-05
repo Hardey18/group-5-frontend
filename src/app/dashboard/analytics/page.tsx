@@ -1,12 +1,12 @@
 "use client";
 
 import * as React from "react";
-import { useRouter } from "next/navigation";
+// import { useRouter } from "next/navigation";
 import Box from "@mui/material/Box";
 import Stack from "@mui/material/Stack";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
-import Alert from "@mui/material/Alert";
+// import Alert from "@mui/material/Alert";
 import CircularProgress from "@mui/material/CircularProgress";
 
 import { useAnalyticsDashboard } from "@/lib/react-query/analytics.queries";
@@ -21,7 +21,7 @@ export default function AnalyticsDashboardPage(): React.JSX.Element {
   // const router = useRouter();
   const [days, setDays] = React.useState<number>(30);
 
-  const { data: response, isLoading, error } = useAnalyticsDashboard(days);
+  const { data: response, isLoading } = useAnalyticsDashboard(days);
 
   // React.useEffect(() => {
   //   if (error && ((error as any)?.status === 401 || (error as any)?.status === 403 || (error as any)?.response?.status === 401)) {
