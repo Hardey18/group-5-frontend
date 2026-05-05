@@ -7,7 +7,7 @@ import Typography from "@mui/material/Typography";
 
 interface KpiCardProps {
   title: string;
-  value: string | number;
+  value: string | number | undefined;
   subtitle?: React.ReactNode;
   accentColor?: "primary" | "secondary" | "error" | "info" | "success" | "warning";
 }

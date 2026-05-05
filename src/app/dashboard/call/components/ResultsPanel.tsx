@@ -86,7 +86,7 @@ export function ResultsPanel({ data, onReset }: ResultsPanelProps) {
           </Typography>
 
           <Grid container spacing={4} mt={1}>
-            <Grid item xs={12} md={6}>
+            <Grid size={{ xs: 12, md: 6 }}>
               <Typography variant="subtitle2" gutterBottom>Nigerian Pidgin Response</Typography>
               <Box 
                 sx={{ 
@@ -98,10 +98,10 @@ export function ResultsPanel({ data, onReset }: ResultsPanelProps) {
                   borderLeft: "4px solid var(--mui-palette-success-main)"
                 }}
               >
-                "{analysis?.response || "No response."}"
+                {analysis?.response || "No response."}
               </Box>
             </Grid>
-            <Grid item xs={12} md={6}>
+            <Grid size={{ xs: 12, md: 6 }}>
               <Typography variant="subtitle2" gutterBottom>Formal English Response</Typography>
               <Box 
                 sx={{ 
@@ -113,7 +113,7 @@ export function ResultsPanel({ data, onReset }: ResultsPanelProps) {
                   borderLeft: "4px solid var(--mui-palette-info-main)"
                 }}
               >
-                "{analysis?.english_response || "No response."}"
+                {analysis?.english_response || "No response."}
               </Box>
             </Grid>
           </Grid>

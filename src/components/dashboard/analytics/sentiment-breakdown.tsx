@@ -29,13 +29,13 @@ export function SentimentBreakdown({ counts, percentages }: SentimentBreakdownPr
       <Divider />
       <CardContent>
         <Grid container spacing={4}>
-          <Grid item xs={12} md={6}>
+          <Grid size={{ xs: 12, md: 6 }}>
             <Typography variant="subtitle2" gutterBottom color="text.secondary">Volume</Typography>
             <Box sx={{ minHeight: 200 }}>
               <HorizontalBarChart data={counts} colorMap={SENTIMENT_COLORS} />
             </Box>
           </Grid>
-          <Grid item xs={12} md={6}>
+          <Grid size={{ xs: 12, md: 6 }}>
             <Typography variant="subtitle2" gutterBottom color="text.secondary">Distribution</Typography>
             <Box sx={{ display: "flex", flexDirection: "column", gap: 2, minHeight: 200 }}>
               {Object.keys(percentages).length === 0 ? (

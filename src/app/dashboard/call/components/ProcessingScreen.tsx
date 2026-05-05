@@ -34,7 +34,7 @@ export function ProcessingScreen() {
         <Typography variant="h5" align="center" gutterBottom>
           Processing your complaint through AI pipeline...
         </Typography>
-        <LinearProgress sx={{ mt: 2, mb: 4, height: 8, borderRadius: 4 }} />
+        {/* <LinearProgress sx={{ mt: 2, mb: 4, height: 8, borderRadius: 4 }} /> */}
 
         <Box display="flex" flexDirection="column" gap={2}>
           {STEPS.map((step, index) => {

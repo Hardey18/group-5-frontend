@@ -46,7 +46,7 @@ export function RecordingPanel({ callId, onStop }: RecordingPanelProps) {
         console.error("Chunk rejected:", res.data);
       }
     } catch (err: any) {
-      console.error("Failed to push chunk:", err);
+      // console.error("Failed to push chunk:", err);
       setErrorLocal("Warning: A chunk failed to synchronize with the server. Recording continues.");
     }
   };

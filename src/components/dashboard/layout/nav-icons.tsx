@@ -6,12 +6,14 @@ import { UserCirclePlusIcon } from '@phosphor-icons/react/dist/ssr/UserCirclePlu
 import { GearSixIcon } from '@phosphor-icons/react/dist/ssr/GearSix';
 import { PlugsConnectedIcon } from '@phosphor-icons/react/dist/ssr/PlugsConnected';
 import { UserIcon } from '@phosphor-icons/react/dist/ssr/User';
+import { DatabaseIcon } from '@phosphor-icons/react/dist/ssr/Database';
 import { UsersIcon } from '@phosphor-icons/react/dist/ssr/Users';
 import { XSquare } from '@phosphor-icons/react/dist/ssr/XSquare';
 
 export const navIcons = {
   'chart-pie': ChartPieIcon,
   'follow-up': ArrowsClockwiseIcon,
+  'dashboard': DatabaseIcon,
   'call': PhoneIcon,
   'client': UserCirclePlusIcon,
   'gear-six': GearSixIcon,
