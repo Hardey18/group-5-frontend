@@ -27,7 +27,7 @@ export function Layout({ children }: LayoutProps): React.JSX.Element {
 				<Box sx={{ p: 3 }}>
 					<Link href={paths.home}>
 						<Box sx={{ display: "inline-block", fontSize: 0 }}>
-							<DynamicLogo colorDark="light" colorLight="dark" height={32} width={200} />
+							<DynamicLogo colorDark="light" colorLight="dark" height={80} width={200} />
 						</Box>
 					</Link>
 				</Box>
@@ -47,21 +47,23 @@ export function Layout({ children }: LayoutProps): React.JSX.Element {
 			>
 				<Stack spacing={3}>
 					<Stack spacing={1}>
-						<Typography color="inherit" sx={{ fontSize: "24px", lineHeight: "32px", textAlign: "center" }} variant="h1">
-							Welcome to{" "}
+						<Typography color="inherit" sx={{ fontSize: "46px", lineHeight: "32px", textAlign: "center", fontWeight: "bold" }} variant="h1">
 							<Box component="span" sx={{ color: "#15b79e" }}>
-								-----
+								CX360
 							</Box>
 						</Typography>
+						<Typography color="inherit" sx={{ fontSize: "20px", lineHeight: "32px", textAlign: "center" }} variant="h3">
+							Turning silent signals into proactive customer engagement
+						</Typography>
 					</Stack>
-					<Box sx={{ display: "flex", justifyContent: "center" }}>
+					{/* <Box sx={{ display: "flex", justifyContent: "center" }}>
 						<Box
 							component="img"
 							alt="Widgets"
 							src="/assets/auth-widgets.png"
 							sx={{ height: "auto", width: "100%", maxWidth: "600px" }}
 						/>
-					</Box>
+					</Box> */}
 				</Stack>
 			</Box>
 		</Box>

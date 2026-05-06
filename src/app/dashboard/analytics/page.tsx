@@ -62,7 +62,7 @@ export default function AnalyticsDashboardPage(): React.JSX.Element {
     <Stack spacing={4}>
       <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: 2 }}>
         <div>
-          <Typography variant="h4">Analytics Dashboard</Typography>
+          <Typography variant="h4">Call Analytics</Typography>
           <Typography color="text.secondary" variant="body1">Admin & Supervisor View</Typography>
         </div>
         <DaysSelector days={days} onChange={setDays} />

@@ -70,7 +70,7 @@ export function SideNav(): React.JSX.Element {
 							Workspace
 						</Typography>
 						<Typography color="inherit" variant="subtitle1">
-							Group 5
+							CX360
 						</Typography>
 					</Box>
 					<CaretUpDownIcon />
@@ -137,7 +137,7 @@ function NavItem({ disabled, external, href, icon, matcher, pathname, title }: N
 						color: "var(--NavItem-disabled-color)",
 						cursor: "not-allowed",
 					}),
-					...(active && { bgcolor: "var(--NavItem-active-background)", color: "var(--NavItem-active-color)" }),
+					...(active && { bgcolor: "#4ADE80", color: "#fff" }),
 				}}
 			>
 				<Box sx={{ alignItems: "center", display: "flex", justifyContent: "center", flex: "0 0 auto" }}>

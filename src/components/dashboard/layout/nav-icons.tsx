@@ -2,6 +2,7 @@ import type { Icon } from '@phosphor-icons/react/dist/lib/types';
 import { ChartPieIcon } from '@phosphor-icons/react/dist/ssr/ChartPie';
 import { ArrowsClockwiseIcon } from '@phosphor-icons/react/dist/ssr/ArrowsClockwise';
 import { PhoneIcon } from '@phosphor-icons/react/dist/ssr/Phone';
+import { ChatIcon } from '@phosphor-icons/react/dist/ssr/Chat';
 import { UserCirclePlusIcon } from '@phosphor-icons/react/dist/ssr/UserCirclePlus';
 import { GearSixIcon } from '@phosphor-icons/react/dist/ssr/GearSix';
 import { PlugsConnectedIcon } from '@phosphor-icons/react/dist/ssr/PlugsConnected';
@@ -15,6 +16,7 @@ export const navIcons = {
   'follow-up': ArrowsClockwiseIcon,
   'dashboard': DatabaseIcon,
   'call': PhoneIcon,
+  'chat': ChatIcon,
   'client': UserCirclePlusIcon,
   'gear-six': GearSixIcon,
   'plugs-connected': PlugsConnectedIcon,
