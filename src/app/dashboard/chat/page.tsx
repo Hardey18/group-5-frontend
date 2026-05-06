@@ -31,9 +31,9 @@ interface Message {
 // Aesthetic: deep-space teal-indigo. Clean, premium, telecom-forward.
 // Distinct from both ChurnIQ (blue-dark) and CallPulse (amber-charcoal).
 const C = {
-  bg: "#08101C",
-  surface: "#0D1B2E",
-  surfaceAlt: "#112039",
+  bg: "#fff",
+  surface: "#cde3c14c",
+  surfaceAlt: "#fff",
   border: "#1A3050",
   borderLight: "#1E3A5F",
   teal: "#00C9B1",
@@ -43,7 +43,8 @@ const C = {
   indigoDim: "#818CF818",
   userBubble: "linear-gradient(135deg, #00A896 0%, #007A6E 100%)",
   aiBubble: "#112039",
-  text: "#E8F4F2",
+  aiText: "#fff",
+  text: "#050A14",
   textMuted: "#5B8A8A",
   textFaint: "#2A4A4A",
   dot1: "#00C9B1",
@@ -236,7 +237,7 @@ function MessageBubble({
           >
             <Typography
               sx={{
-                color: isUser ? "#fff" : C.text,
+                color: isUser ? "#fff" : C.aiText,
                 fontSize: "0.88rem",
                 lineHeight: 1.65,
                 letterSpacing: "0.01em",
@@ -265,15 +266,15 @@ function MessageBubble({
                       gap: 0.4,
                       px: 1,
                       py: 0.3,
-                      bgcolor: C.surface,
+                      bgcolor: "#fff",
                       border: `1px solid ${C.teal}44`,
                       borderRadius: "20px",
                       cursor: "pointer",
                       transition: "all 0.18s",
-                      "&:hover": {
-                        bgcolor: C.tealDim,
-                        borderColor: C.teal,
-                      },
+                      // "&:hover": {
+                      //   bgcolor: C.tealDim,
+                      //   borderColor: C.teal,
+                      // },
                     }}
                   >
                     <TranslateIcon sx={{ fontSize: "0.65rem", color: C.teal }} />
@@ -402,7 +403,7 @@ export default function ChatSection() {
           </Box>
           <Box>
             <Typography sx={{ color: C.text, fontWeight: 700, fontSize: "0.92rem", lineHeight: 1.1 }}>
-              AI Assistant
+              Customer Support
             </Typography>
             <Typography sx={{ color: C.teal, fontSize: "0.65rem", fontWeight: 600, letterSpacing: "0.08em" }}>
               {isPending ? "TYPING…" : "ONLINE"}

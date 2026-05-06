@@ -3,9 +3,9 @@
 // Consistent with ChatSection's deep-space teal-indigo aesthetic
 
 export const D = {
-  bg:         "#08101C",
-  surface:    "#0D1B2E",
-  surfaceAlt: "#112039",
+  bg:         "#fff",
+  surface:    "#cde3c14c",
+  surfaceAlt: "#fff",
   border:     "#1A3050",
   borderLight:"#1E3A5F",
 
@@ -21,7 +21,7 @@ export const D = {
   gold:  "#F5C842",
 
   // Text
-  text:      "#E8F4F2",
+  text:      "#050A14",
   textMuted: "#5B8A8A",
   textFaint: "#2A4A4A",
 } as const;

@@ -2,8 +2,8 @@ import type { NavItemConfig } from '@/types/nav';
 import { paths } from '@/paths';
 
 export const navItems = [
-  { key: 'dashboard', title: 'Insight Analytics', href: paths.dashboard.dashboard, icon: 'dashboard' },
-  { key: 'overview', title: 'Call Analytics', href: paths.dashboard.overview, icon: 'chart-pie' },
+  { key: 'dashboard', title: 'Insight Analysis', href: paths.dashboard.dashboard, icon: 'dashboard' },
+  { key: 'overview', title: 'Call Analysis', href: paths.dashboard.overview, icon: 'chart-pie' },
   { key: 'followUp', title: 'Follow Up', href: paths.dashboard.followUp, icon: 'follow-up' },
   { key: 'call', title: 'Call', href: paths.dashboard.call, icon: 'call' },
   { key: 'chat', title: 'Chat', href: paths.dashboard.chat, icon: 'chat' },

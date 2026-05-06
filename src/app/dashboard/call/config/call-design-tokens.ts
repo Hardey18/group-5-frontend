@@ -3,9 +3,9 @@
 // Consistent with the broader dark teal-indigo system
 
 export const D = {
-  bg:         "#08101C",
-  surface:    "#0D1B2E",
-  surfaceAlt: "#112039",
+  bg:         "#fff",
+  surface:    "#cde3c14c",
+  surfaceAlt: "#fff",
   border:     "#1A3050",
   borderLight:"#1E3A5F",
 
@@ -17,7 +17,7 @@ export const D = {
   amber:  "#FB923C",
   gold:   "#F5C842",
 
-  text:      "#E8F4F2",
+  text:      "#050A14",
   textMuted: "#5B8A8A",
   textFaint: "#2A4A4A",
 } as const;

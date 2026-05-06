@@ -58,14 +58,14 @@ import { useAnalyticsDashboard } from "@/lib/react-query/analytics.queries";
 // ─── Design Tokens ─────────────────────────────────────────────────────────────
 // Warm, editorial, amber-on-charcoal — completely distinct from ChurnIQ
 const T = {
-  bg: "#050A14",
-  surface: "#0C1628",
-  surfaceAlt: "#0F1E38",
-  surfaceHover: "#2A2710",
+  bg: "#fff",
+  surface: "#cde3c14c",
+  surfaceAlt: "#fff",
+  surfaceHover: "",
   border: "#1A2E50",
   borderLight: "#254275",
-  gold: "#F5C842",
-  goldSoft: "#C9A22A",
+  gold: "#091326",
+  goldSoft: "#050A14",
   goldDim: "#F5C84222",
   teal: "#2DD4BF",
   tealDim: "#2DD4BF18",
@@ -77,7 +77,7 @@ const T = {
   amberDim: "#FB923C18",
   green: "#4ADE80",
   greenDim: "#4ADE8018",
-  text: "#F0ECD4",
+  text: "#050A14",
   textMuted: "#8C8660",
   textFaint: "#4A4728",
 };

@@ -80,9 +80,9 @@ interface Prediction {
 
 // ─── Palette & Theme Constants ────────────────────────────────────────────────
 const PALETTE = {
-  bg: "#050A14",
-  surface: "#0C1628",
-  surfaceAlt: "#0F1E38",
+  bg: "#fff",
+  surface: "#cde3c14c",
+  surfaceAlt: "#fff",
   border: "#1A2E50",
   accent: "#00D4FF",
   accentSoft: "#00A3C4",
@@ -90,7 +90,7 @@ const PALETTE = {
   warning: "#FFB547",
   danger: "#FF4D6A",
   purple: "#A855F7",
-  text: "#E2EAF4",
+  text: "#050A14",
   textMuted: "#6B8CAE",
 };
 
@@ -438,7 +438,7 @@ export default function ChurnDashboard() {
             </Box>
             <Box>
               <Typography sx={{ fontWeight: 800, fontSize: "1.1rem", color: PALETTE.text, lineHeight: 1 }}>
-                Insight Analytics
+                Customer Insight Analysis
               </Typography>
               <Typography sx={{ color: PALETTE.textMuted, fontSize: "0.65rem", letterSpacing: "0.12em" }}>
                 INTELLIGENCE DASHBOARD
@@ -870,7 +870,7 @@ export default function ChurnDashboard() {
               {/* ── Footer ── */}
               <Box sx={{ mt: 5, pt: 3, borderTop: `1px solid ${PALETTE.border}`, display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: 1 }}>
                 <Typography sx={{ color: PALETTE.textMuted, fontSize: "0.72rem" }}>
-                  ChurnIQ Dashboard · Auto-refreshes every 30s · Page {data?.page ?? "—"} of {data?.totalPages ?? "—"}
+                  Customer Insight Analysis Dashboard · Auto-refreshes every 30s · Page {data?.page ?? "—"} of {data?.totalPages ?? "—"}
                 </Typography>
                 <Stack direction="row" spacing={1}>
                   {[PALETTE.danger, PALETTE.warning, PALETTE.success].map((c, i) => (
