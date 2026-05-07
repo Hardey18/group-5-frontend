@@ -8,6 +8,7 @@ import Typography from "@mui/material/Typography";
 
 import { paths } from "@/paths";
 import { DynamicLogo } from "@/components/core/logo";
+import { M } from "@/config/mtn-tokens";
 
 export interface LayoutProps {
 	children: React.ReactNode;
@@ -38,7 +39,7 @@ export function Layout({ children }: LayoutProps): React.JSX.Element {
 			<Box
 				sx={{
 					alignItems: "center",
-					background: "radial-gradient(50% 50% at 50% 50%, #122647 0%, #090E23 100%)",
+					background: `radial-gradient(50% 50% at 50% 50%, ${M.black} 0%, ${M.black} 100%)`,
 					color: "var(--mui-palette-common-white)",
 					display: { xs: "none", lg: "flex" },
 					justifyContent: "center",
@@ -48,7 +49,7 @@ export function Layout({ children }: LayoutProps): React.JSX.Element {
 				<Stack spacing={3}>
 					<Stack spacing={1}>
 						<Typography color="inherit" sx={{ fontSize: "46px", lineHeight: "32px", textAlign: "center", fontWeight: "bold" }} variant="h1">
-							<Box component="span" sx={{ color: "#15b79e" }}>
+							<Box component="span" sx={{ color: `${M.yellowDark}` }}>
 								CX360
 							</Box>
 						</Typography>

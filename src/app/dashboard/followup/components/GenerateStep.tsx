@@ -13,6 +13,7 @@ import { LoadingButton } from "@mui/lab";
 
 import { MessageTypeToggle } from "./MessageTypeToggle";
 import { useFollowUp } from "../hooks/useFollowUp";
+import { M } from "@/config/mtn-tokens";
 
 export function GenerateStep({ hook }: { hook: ReturnType<typeof useFollowUp> }) {
   const [dirty, setDirty] = useState(false);
@@ -61,6 +62,7 @@ export function GenerateStep({ hook }: { hook: ReturnType<typeof useFollowUp> })
           size="large"
           loading={hook.isGenerating}
           onClick={handleGenerate}
+          style={{ background: M.yellowDark, color: M.black }}
         >
           Generate Message
         </LoadingButton>

@@ -7,7 +7,8 @@ import Stack from "@mui/material/Stack";
 import { MicrophoneStage, StopCircle, Warning, WifiHigh } from "@phosphor-icons/react";
 import { useAudioRecorder } from "../hooks/useAudioRecorder";
 import { api } from "@/lib/api/axios";
-import { D } from "../config/call-design-tokens";
+// import { D } from "../config/call-design-tokens";
+import { M } from "@/config/mtn-tokens";
 // import { D } from "./call-design-tokens";
 
 interface RecordingPanelProps {
@@ -25,7 +26,7 @@ function Waveform({ active }: { active: boolean }) {
           sx={{
             width: 3,
             borderRadius: 4,
-            bgcolor: active ? D.rose : D.textFaint,
+            bgcolor: active ? M.rose : M.textFaint,
             height: active ? `${Math.random() * 60 + 20}%` : "15%",
             animation: active ? "wave 0.8s ease-in-out infinite alternate" : "none",
             animationDelay: `${i * 0.06}s`,
@@ -114,8 +115,8 @@ export function RecordingPanel({ callId, onStop }: RecordingPanelProps) {
         sx={{
           width: "100%",
           maxWidth: 440,
-          bgcolor: D.surface,
-          border: `1px solid ${D.border}`,
+          bgcolor: M.surface,
+          border: `1px solid ${M.border}`,
           borderRadius: "20px",
           overflow: "hidden",
           boxShadow: `0 32px 80px #00000050`,
@@ -126,8 +127,8 @@ export function RecordingPanel({ callId, onStop }: RecordingPanelProps) {
           sx={{
             height: 3,
             background: isRecording
-              ? `linear-gradient(90deg, ${D.rose}, ${D.amber} 60%, transparent)`
-              : `linear-gradient(90deg, ${D.textMuted}, transparent)`,
+              ? `linear-gradient(90deg, ${M.rose}, ${M.amber} 60%, transparent)`
+              : `linear-gradient(90deg, ${M.textMuted}, transparent)`,
             transition: "background 0.5s",
           }}
         />
@@ -136,10 +137,10 @@ export function RecordingPanel({ callId, onStop }: RecordingPanelProps) {
           {/* Header */}
           <Stack direction="row" alignItems="center" justifyContent="space-between" sx={{ mb: 4 }}>
             <Box>
-              <Typography sx={{ color: D.text, fontWeight: 800, fontSize: "1.1rem", letterSpacing: "-0.02em" }}>
+              <Typography sx={{ color: M.text, fontWeight: 800, fontSize: "1.1rem", letterSpacing: "-0.02em" }}>
                 {stopping ? "Finishing up…" : "Call Active"}
               </Typography>
-              <Typography sx={{ color: D.textMuted, fontSize: "0.68rem", fontFamily: "monospace", mt: 0.25 }}>
+              <Typography sx={{ color: M.textMuted, fontSize: "0.68rem", fontFamily: "monospace", mt: 0.25 }}>
                 ID: {callId}
               </Typography>
             </Box>
@@ -150,8 +151,8 @@ export function RecordingPanel({ callId, onStop }: RecordingPanelProps) {
                 gap: 0.75,
                 px: 1.5,
                 py: 0.5,
-                bgcolor: isRecording ? `${D.rose}15` : `${D.textMuted}12`,
-                border: `1px solid ${isRecording ? D.rose + "44" : D.border}`,
+                bgcolor: isRecording ? `${M.rose}15` : `${M.textMuted}12`,
+                border: `1px solid ${isRecording ? M.rose + "44" : M.border}`,
                 borderRadius: "20px",
                 transition: "all 0.3s",
               }}
@@ -161,7 +162,7 @@ export function RecordingPanel({ callId, onStop }: RecordingPanelProps) {
                   width: 6,
                   height: 6,
                   borderRadius: "50%",
-                  bgcolor: isRecording ? D.rose : D.textMuted,
+                  bgcolor: isRecording ? M.rose : M.textMuted,
                   ...(isRecording && {
                     animation: "recpulse 1.2s ease-in-out infinite",
                     "@keyframes recpulse": {
@@ -171,7 +172,7 @@ export function RecordingPanel({ callId, onStop }: RecordingPanelProps) {
                   }),
                 }}
               />
-              <Typography sx={{ color: isRecording ? D.rose : D.textMuted, fontSize: "0.65rem", fontWeight: 700, letterSpacing: "0.08em" }}>
+              <Typography sx={{ color: isRecording ? M.rose : M.textMuted, fontSize: "0.65rem", fontWeight: 700, letterSpacing: "0.08em" }}>
                 {isRecording ? "REC" : "STOPPED"}
               </Typography>
             </Box>
@@ -181,7 +182,7 @@ export function RecordingPanel({ callId, onStop }: RecordingPanelProps) {
           <Box sx={{ textAlign: "center", mb: 3 }}>
             <Typography
               sx={{
-                color: isRecording ? D.rose : D.textMuted,
+                color: isRecording ? M.rose : M.textMuted,
                 fontSize: "4rem",
                 fontWeight: 900,
                 letterSpacing: "-0.04em",
@@ -189,7 +190,7 @@ export function RecordingPanel({ callId, onStop }: RecordingPanelProps) {
                 fontVariantNumeric: "tabular-nums",
                 fontFamily: "'JetBrains Mono', 'Fira Code', monospace",
                 transition: "color 0.4s",
-                textShadow: isRecording ? `0 0 40px ${D.rose}40` : "none",
+                textShadow: isRecording ? `0 0 40px ${M.rose}40` : "none",
               }}
             >
               {formatSeconds(elapsedSeconds)}
@@ -207,8 +208,8 @@ export function RecordingPanel({ callId, onStop }: RecordingPanelProps) {
               display: "flex",
               alignItems: "center",
               justifyContent: "space-between",
-              bgcolor: D.surfaceAlt,
-              border: `1px solid ${D.border}`,
+              bgcolor: M.surfaceAlt,
+              border: `1px solid ${M.border}`,
               borderRadius: "10px",
               px: 2,
               py: 1.25,
@@ -216,12 +217,12 @@ export function RecordingPanel({ callId, onStop }: RecordingPanelProps) {
             }}
           >
             <Stack direction="row" alignItems="center" spacing={1}>
-              <WifiHigh size={14} color={D.teal} weight="fill" />
-              <Typography sx={{ color: D.textMuted, fontSize: "0.72rem", fontWeight: 600, letterSpacing: "0.06em" }}>
+              <WifiHigh size={14} color={M.teal} weight="fill" />
+              <Typography sx={{ color: M.textMuted, fontSize: "0.72rem", fontWeight: 600, letterSpacing: "0.06em" }}>
                 SYNCED CHUNKS
               </Typography>
             </Stack>
-            <Typography sx={{ color: D.teal, fontWeight: 700, fontSize: "0.82rem", fontFamily: "monospace" }}>
+            <Typography sx={{ color: M.teal, fontWeight: 700, fontSize: "0.82rem", fontFamily: "monospace" }}>
               {chunksSent}
             </Typography>
           </Box>
@@ -233,16 +234,16 @@ export function RecordingPanel({ callId, onStop }: RecordingPanelProps) {
                 display: "flex",
                 alignItems: "flex-start",
                 gap: 1.25,
-                bgcolor: `${D.amber}12`,
-                border: `1px solid ${D.amber}33`,
+                bgcolor: `${M.amber}12`,
+                border: `1px solid ${M.amber}33`,
                 borderRadius: "10px",
                 px: 2,
                 py: 1.5,
                 mb: 2.5,
               }}
             >
-              <Warning size={15} color={D.amber} weight="fill" style={{ flexShrink: 0, marginTop: 1 }} />
-              <Typography sx={{ color: D.amber, fontSize: "0.75rem", lineHeight: 1.5 }}>
+              <Warning size={15} color={M.amber} weight="fill" style={{ flexShrink: 0, marginTop: 1 }} />
+              <Typography sx={{ color: M.amber, fontSize: "0.75rem", lineHeight: 1.5 }}>
                 {error || errorLocal}
               </Typography>
             </Box>
@@ -257,10 +258,10 @@ export function RecordingPanel({ callId, onStop }: RecordingPanelProps) {
               width: "100%",
               py: 1.75,
               borderRadius: "12px",
-              border: `1.5px solid ${!isRecording || stopping ? D.border : D.rose + "66"}`,
+              border: `1.5px solid ${!isRecording || stopping ? M.border : M.rose + "66"}`,
               cursor: !isRecording || stopping ? "not-allowed" : "pointer",
-              bgcolor: !isRecording || stopping ? D.surfaceAlt : `${D.rose}18`,
-              color: !isRecording || stopping ? D.textMuted : D.rose,
+              bgcolor: !isRecording || stopping ? M.surfaceAlt : `${M.rose}18`,
+              color: !isRecording || stopping ? M.textMuted : M.rose,
               fontSize: "0.92rem",
               fontWeight: 700,
               letterSpacing: "0.02em",
@@ -271,9 +272,9 @@ export function RecordingPanel({ callId, onStop }: RecordingPanelProps) {
               gap: "10px",
               transition: "all 0.2s",
               "&:hover:not(:disabled)": {
-                bgcolor: `${D.rose}28`,
-                borderColor: D.rose,
-                boxShadow: `0 8px 24px ${D.rose}20`,
+                bgcolor: `${M.rose}28`,
+                borderColor: M.rose,
+                boxShadow: `0 8px 24px ${M.rose}20`,
                 transform: "translateY(-1px)",
               },
             }}

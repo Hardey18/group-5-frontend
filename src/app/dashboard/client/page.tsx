@@ -12,6 +12,7 @@ import { useClientDashboard } from "@/lib/react-query/client.queries";
 import { CallHistoryTable } from "@/components/dashboard/client/call-history-table";
 import { RequestHistoryTable } from "@/components/dashboard/client/request-history-table";
 import { D } from "./config/client-design-tokens";
+import { M } from "@/config/mtn-tokens";
 
 // ─── Mini stat card ────────────────────────────────────────────────────────────
 function StatCard({
@@ -162,7 +163,7 @@ export default function ClientDashboardPage(): React.JSX.Element {
           backdropFilter: "blur(14px)",
         }}
       >
-        <Stack direction="row" alignItems="center" spacing={2}>
+        {/* <Stack direction="row" alignItems="center" spacing={2}>
           <Box
             sx={{
               width: 36,
@@ -185,7 +186,36 @@ export default function ClientDashboardPage(): React.JSX.Element {
               YOUR HISTORY & REQUESTS
             </Typography>
           </Box>
-        </Stack>
+        </Stack> */}
+
+        <Stack direction="row" alignItems="center" spacing={2}>
+                  <Box sx={{ width: 5, bgcolor: M.yellow, alignSelf: "stretch" }} />
+                  <Stack direction="row" alignItems="center" spacing={1.5} sx={{ py: 2 }}>
+                    <Box
+                      sx={{
+                        width: 36,
+                        height: 36,
+                        borderRadius: "9px",
+                        bgcolor: M.yellow,
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                      }}
+                    >
+                      <PhoneCall sx={{ color: M.black, fontSize: "1.15rem" }} />
+                    </Box>
+                    <Box>
+                      <Typography
+                        sx={{ fontWeight: 800, fontSize: "1rem", color: M.black, lineHeight: 1, letterSpacing: "-0.01em" }}
+                      >
+                        Client Dashboard
+                      </Typography>
+                      <Typography sx={{ color: M.textMuted, fontSize: "0.6rem", letterSpacing: "0.12em" }}>
+                        YOUR HISTORY & REQUESTS
+                      </Typography>
+                    </Box>
+                  </Stack>
+                </Stack>
 
         {/* Error banner in header */}
         {(error || (response && !response.success)) && (

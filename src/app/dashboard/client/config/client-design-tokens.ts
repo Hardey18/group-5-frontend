@@ -2,6 +2,8 @@
 // Shared design system tokens for the Client Dashboard
 // Consistent with ChatSection's deep-space teal-indigo aesthetic
 
+import { M } from "@/config/mtn-tokens";
+
 export const D = {
   bg:         "#fff",
   surface:    "#cde3c14c",
@@ -10,12 +12,12 @@ export const D = {
   borderLight:"#1E3A5F",
 
   // Primary accents
-  teal:   "#00C9B1",
+  teal:   `${M.yellowDark}`,
   indigo: "#818CF8",
   sky:    "#38BDF8",
 
   // Semantic
-  green: "#4ADE80",
+  green: `${M.yellowDark}`,
   rose:  "#FB7185",
   amber: "#FB923C",
   gold:  "#F5C842",

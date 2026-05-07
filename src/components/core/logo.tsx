@@ -24,7 +24,7 @@ export function Logo({ color = 'dark', emblem, height = HEIGHT, width = WIDTH }:
   if (emblem) {
     url = color === 'light' ? '/assets/logo-emblem.svg' : '/assets/logo-emblem--dark.svg';
   } else {
-    url = color === 'light' ? 'https://images.seeklogo.com/logo-png/50/1/mtn-logo-png_seeklogo-503277.png' : 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/MTN_2022_logo.svg/330px-MTN_2022_logo.svg.png';
+    url = color === 'light' ? 'https://www.mtn.ng/wp-content/themes/mtn-vivid-wp/public/img/mtn-logo.svg' : 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/MTN_2022_logo.svg/330px-MTN_2022_logo.svg.png';
   }
 
   return <Box alt="logo" component="img" height={height} src={url} width={width} />;

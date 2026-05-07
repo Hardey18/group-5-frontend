@@ -18,6 +18,7 @@ import SmartToyIcon from "@mui/icons-material/SmartToy";
 import PersonIcon from "@mui/icons-material/Person";
 import TranslateIcon from "@mui/icons-material/Translate";
 import { useTextChatMutation } from "@/lib/react-query/chat.mutation";
+import { M } from "@/config/mtn-tokens";
 
 interface Message {
   id: number;
@@ -28,7 +29,7 @@ interface Message {
 }
 
 // ─── Design tokens ────────────────────────────────────────────────────────────
-// Aesthetic: deep-space teal-indigo. Clean, premium, telecom-forward.
+// Aesthetic: deep-space teal-yellowDeep. Clean, premium, telecom-forward.
 // Distinct from both ChurnIQ (blue-dark) and CallPulse (amber-charcoal).
 const C = {
   bg: "#fff",
@@ -36,10 +37,10 @@ const C = {
   surfaceAlt: "#fff",
   border: "#1A3050",
   borderLight: "#1E3A5F",
-  teal: "#00C9B1",
+  teal: `${M.yellowDark}`,
   tealDim: "#00C9B115",
   tealGlow: "#00C9B130",
-  indigo: "#818CF8",
+  yellowDeep: `${M.yellowDeep}`,
   indigoDim: "#818CF818",
   userBubble: "linear-gradient(135deg, #00A896 0%, #007A6E 100%)",
   aiBubble: "#112039",
@@ -103,7 +104,7 @@ function EmptyState() {
             width: 80,
             height: 80,
             borderRadius: "50%",
-            background: `radial-gradient(circle at 35% 35%, #00C9B155, #007A6E22)`,
+            background: `radial-gradient(circle at 35% 35%, ${M.yellowLight}, ${M.yellowMid})`,
             border: `1.5px solid ${C.teal}44`,
             display: "flex",
             alignItems: "center",
@@ -146,7 +147,7 @@ function EmptyState() {
         >
           Sup, I dey here for you
         </Typography>
-        <Typography sx={{ color: C.textMuted, fontSize: "0.85rem", lineHeight: 1.6 }}>
+        <Typography sx={{ color: M.textMuted, fontSize: "0.85rem", lineHeight: 1.6 }}>
           Ask me anything in Pidgin or English —<br />I go reply you sharp sharp.
         </Typography>
       </Box>
@@ -159,7 +160,7 @@ function EmptyState() {
             label={s}
             size="small"
             sx={{
-              bgcolor: C.tealDim,
+              bgcolor: M.yellowLight,
               color: C.teal,
               border: `1px solid ${C.teal}30`,
               fontSize: "0.72rem",
@@ -208,8 +209,8 @@ function MessageBubble({
             flexShrink: 0,
             background: isUser
               ? `linear-gradient(135deg, ${C.teal}, #007A6E)`
-              : `linear-gradient(135deg, ${C.indigo}, #4F46E5)`,
-            border: `1.5px solid ${isUser ? C.teal : C.indigo}44`,
+              : `linear-gradient(135deg, ${C.yellowDeep}, #4F46E5)`,
+            border: `1.5px solid ${isUser ? C.teal : C.yellowDeep}44`,
             "& svg": { fontSize: "0.9rem" },
           }}
         >
@@ -227,7 +228,7 @@ function MessageBubble({
                 ? "18px 18px 4px 18px"
                 : "18px 18px 18px 4px",
               background: isUser ? C.userBubble : C.aiBubble,
-              border: isUser ? "none" : `1px solid ${C.border}`,
+              border: isUser ? "none" : `1px solid ${M.border}`,
               boxShadow: isUser
                 ? `0 4px 24px ${C.teal}20`
                 : `0 2px 12px #00000030`,
@@ -342,7 +343,7 @@ export default function ChatSection() {
       sx={{
         width: "100%",
         height: "100vh",
-        bgcolor: C.bg,
+        bgcolor: M.bg,
         display: "flex",
         flexDirection: "column",
         fontFamily: "'Outfit', 'Nunito', sans-serif",
@@ -360,21 +361,20 @@ export default function ChatSection() {
           display: "flex",
           alignItems: "center",
           justifyContent: "space-between",
-          borderBottom: `1px solid ${C.border}`,
-          bgcolor: `${C.bg}CC`,
+          borderBottom: `1px solid ${M.border}`,
+          bgcolor: `${M.bg}CC`,
           backdropFilter: "blur(12px)",
           flexShrink: 0,
         }}
       >
-        <Stack direction="row" alignItems="center" spacing={1.5}>
-          {/* Animated status dot */}
+        {/* <Stack direction="row" alignItems="center" spacing={1.5}>
           <Box sx={{ position: "relative", width: 36, height: 36 }}>
             <Box
               sx={{
                 width: 36,
                 height: 36,
                 borderRadius: "10px",
-                background: `linear-gradient(135deg, ${C.teal}22, ${C.indigo}22)`,
+                background: `linear-gradient(135deg, ${C.teal}22, ${C.yellowDeep}22)`,
                 border: `1px solid ${C.teal}33`,
                 display: "flex",
                 alignItems: "center",
@@ -409,23 +409,52 @@ export default function ChatSection() {
               {isPending ? "TYPING…" : "ONLINE"}
             </Typography>
           </Box>
-        </Stack>
+        </Stack> */}
+
+        <Stack direction="row" alignItems="center" spacing={2}>
+                  <Box sx={{ width: 5, bgcolor: M.yellow, alignSelf: "stretch" }} />
+                  <Stack direction="row" alignItems="center" spacing={1.5} sx={{ py: 2 }}>
+                    <Box
+                      sx={{
+                        width: 36,
+                        height: 36,
+                        borderRadius: "9px",
+                        bgcolor: M.yellow,
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                      }}
+                    >
+                      <SmartToyIcon sx={{ color: M.black, fontSize: "1.15rem" }} />
+                    </Box>
+                    <Box>
+                      <Typography
+                        sx={{ fontWeight: 800, fontSize: "1rem", color: M.black, lineHeight: 1, letterSpacing: "-0.01em" }}
+                      >
+                        Customer Support
+                      </Typography>
+                      <Typography sx={{ color: M.textMuted, fontSize: "0.6rem", letterSpacing: "0.12em" }}>
+                        ONLINE
+                      </Typography>
+                    </Box>
+                  </Stack>
+                </Stack>
 
         <Stack direction="row" spacing={1} alignItems="center">
           <Chip
             size="small"
             label="Pidgin · English"
-            icon={<TranslateIcon style={{ fontSize: 12, color: C.indigo }} />}
+            icon={<TranslateIcon style={{ fontSize: 12, color: C.yellowDeep }} />}
             sx={{
-              bgcolor: C.indigoDim,
-              color: C.indigo,
-              border: `1px solid ${C.indigo}30`,
+              bgcolor: M.yellowLight,
+              color: C.yellowDeep,
+              border: `1px solid ${C.yellowDeep}30`,
               fontSize: "0.65rem",
               fontWeight: 600,
               "& .MuiChip-icon": { ml: 0.75 },
             }}
           />
-          <Typography sx={{ color: C.textMuted, fontSize: "0.7rem" }}>
+          <Typography sx={{ color: M.textMuted, fontSize: "0.7rem" }}>
             {messages.length > 0 ? `${messages.length} messages` : ""}
           </Typography>
         </Stack>
@@ -443,10 +472,10 @@ export default function ChatSection() {
           py: 3,
           gap: 2.5,
           scrollbarWidth: "thin",
-          scrollbarColor: `${C.border} transparent`,
+          scrollbarColor: `${M.border} transparent`,
           "&::-webkit-scrollbar": { width: "4px" },
           "&::-webkit-scrollbar-track": { background: "transparent" },
-          "&::-webkit-scrollbar-thumb": { background: C.border, borderRadius: "4px" },
+          "&::-webkit-scrollbar-thumb": { background: M.border, borderRadius: "4px" },
         }}
       >
         {isEmpty ? (
@@ -463,8 +492,8 @@ export default function ChatSection() {
                     sx={{
                       width: 30,
                       height: 30,
-                      background: `linear-gradient(135deg, ${C.indigo}, #4F46E5)`,
-                      border: `1.5px solid ${C.indigo}44`,
+                      background: `linear-gradient(135deg, ${C.yellowDeep}, ${M.yellowDark})`,
+                      border: `1.5px solid ${M.yellowDeep}44`,
                     }}
                   >
                     <SmartToyIcon sx={{ fontSize: "0.9rem" }} />
@@ -474,7 +503,7 @@ export default function ChatSection() {
                       px: 2.25,
                       py: 1.5,
                       bgcolor: C.aiBubble,
-                      border: `1px solid ${C.border}`,
+                      border: `1px solid ${M.border}`,
                       borderRadius: "18px 18px 18px 4px",
                     }}
                   >
@@ -492,8 +521,8 @@ export default function ChatSection() {
         sx={{
           px: { xs: 2, sm: 4, md: 6 },
           py: 2.5,
-          borderTop: `1px solid ${C.border}`,
-          bgcolor: `${C.bg}CC`,
+          borderTop: `1px solid ${M.border}`,
+          bgcolor: `${M.bg}CC`,
           backdropFilter: "blur(12px)",
           flexShrink: 0,
         }}
@@ -503,13 +532,13 @@ export default function ChatSection() {
             display: "flex",
             alignItems: "center",
             gap: 1.5,
-            bgcolor: C.surface,
-            border: `1.5px solid ${input.trim() ? C.teal + "55" : C.border}`,
+            bgcolor: M.surface,
+            border: `1.5px solid ${input.trim() ? M.teal + "55" : M.border}`,
             borderRadius: "14px",
             px: 2,
             py: 0.75,
             transition: "border-color 0.2s, box-shadow 0.2s",
-            boxShadow: input.trim() ? `0 0 0 3px ${C.teal}10` : "none",
+            boxShadow: input.trim() ? `0 0 0 3px ${M.teal}10` : "none",
           }}
         >
           <TextField
@@ -530,13 +559,13 @@ export default function ChatSection() {
             InputProps={{ disableUnderline: true }}
             sx={{
               "& .MuiInputBase-root": {
-                color: C.text,
+                color: M.text,
                 fontSize: "0.88rem",
                 lineHeight: 1.6,
                 fontFamily: "inherit",
               },
               "& .MuiInputBase-input::placeholder": {
-                color: C.textMuted,
+                color: M.textMuted,
                 opacity: 1,
               },
             }}
@@ -554,23 +583,23 @@ export default function ChatSection() {
                   borderRadius: "10px",
                   background: input.trim() && !isPending
                     ? `linear-gradient(135deg, ${C.teal}, #007A6E)`
-                    : C.surfaceAlt,
-                  border: `1px solid ${input.trim() && !isPending ? C.teal : C.border}`,
+                    : M.surfaceAlt,
+                  border: `1px solid ${input.trim() && !isPending ? C.teal : M.border}`,
                   transition: "all 0.2s",
                   "&:hover": {
                     transform: input.trim() && !isPending ? "scale(1.06)" : "none",
                     boxShadow: input.trim() && !isPending ? `0 4px 16px ${C.teal}30` : "none",
                   },
-                  "&.Mui-disabled": { background: C.surfaceAlt },
+                  "&.Mui-disabled": { background: M.surfaceAlt },
                 }}
               >
                 {isPending ? (
-                  <CircularProgress size={16} sx={{ color: C.textMuted }} />
+                  <CircularProgress size={16} sx={{ color: M.textMuted }} />
                 ) : (
                   <SendIcon
                     sx={{
                       fontSize: "1rem",
-                      color: input.trim() ? "#fff" : C.textFaint,
+                      color: input.trim() ? "#fff" : M.textFaint,
                       transform: "rotate(-10deg)",
                       transition: "color 0.2s",
                     }}
@@ -583,7 +612,7 @@ export default function ChatSection() {
 
         <Typography
           sx={{
-            color: C.textFaint,
+            color: M.textFaint,
             fontSize: "0.62rem",
             textAlign: "center",
             mt: 1,

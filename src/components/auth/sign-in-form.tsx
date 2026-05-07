@@ -23,9 +23,10 @@ import { getUserProfile } from "@/lib/api/services/user-service";
 import { useLogin } from "@/lib/react-query/auth.mutations";
 import { getUserIdFromToken } from "@/lib/utils/decode-token";
 import { useUser } from "@/hooks/use-user";
+import { M } from "@/config/mtn-tokens";
 
 const schema = zod.object({
-	email: zod.string().min(1, { message: "Email is required" }).email(),
+	email: zod.string().min(1, { message: "Email or Username is required" }),
 	password: zod.string().min(1, { message: "Password is required" }),
 });
 
@@ -69,9 +70,16 @@ export function SignInForm(): React.JSX.Element {
 					// store user
 					localStorage.setItem("user", JSON.stringify(userProfile));
 
+					console.log("<<USER>>", userProfile)
+
 					await checkSession?.();
 
-					router.push("/dashboard");
+					// if (userProfile === "cus1") {
+					// 	router.push("/dashboard/call")
+					// } else {
+					// 	router.push("/dashboard/dashboard")
+					// }
+					// router.refresh()
 				},
 				onError: (error: { message: string }) => {
 					setError("root", {
@@ -103,7 +111,7 @@ export function SignInForm(): React.JSX.Element {
 						render={({ field }) => (
 							<FormControl error={Boolean(errors.email)}>
 								<InputLabel>Email address</InputLabel>
-								<OutlinedInput {...field} label="Email address" type="email" />
+								<OutlinedInput {...field} label="Email address" />
 								{errors.email ? <FormHelperText>{errors.email.message}</FormHelperText> : null}
 							</FormControl>
 						)}
@@ -148,7 +156,7 @@ export function SignInForm(): React.JSX.Element {
 						</Link>
 					</div>
 					{errors.root ? <Alert color="error">{errors.root.message}</Alert> : null}
-					<Button disabled={isPending} type="submit" variant="contained">
+					<Button disabled={isPending} type="submit" variant="contained" style={{ background: `${M.yellowDark}` }}>
 						Sign in
 					</Button>
 				</Stack>

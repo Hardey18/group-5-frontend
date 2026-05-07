@@ -3,12 +3,13 @@
 import React, { useState, useEffect } from "react";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
-import Stack from "@mui/material/Stack";
+// import Stack from "@mui/material/Stack";
 import CircularProgress from "@mui/material/CircularProgress";
 import { PhoneCall, User, Warning } from "@phosphor-icons/react";
 import { api } from "@/lib/api/axios";
 import { useCurrentUser } from "@/lib/react-query/user.queries";
-import { D } from "../config/call-design-tokens";
+// import { D } from "../config/call-design-tokens";
+import { M } from "@/config/mtn-tokens";
 // import { D } from "./call-design-tokens";
 
 interface StartCallCardProps {
@@ -67,15 +68,15 @@ export function StartCallCard({ onCallStarted }: StartCallCardProps) {
         sx={{
           width: "100%",
           maxWidth: 420,
-          bgcolor: D.surface,
-          border: `1px solid ${D.border}`,
+          bgcolor: M.surface,
+          border: `1px solid ${M.border}`,
           borderRadius: "20px",
           overflow: "hidden",
           boxShadow: `0 32px 80px #00000050`,
         }}
       >
         {/* Top accent bar */}
-        <Box sx={{ height: 3, background: `linear-gradient(90deg, ${D.green}, ${D.teal} 60%, transparent)` }} />
+        <Box sx={{ height: 3, background: `linear-gradient(90deg, ${M.yellowDark}, ${M.teal} 60%, transparent)` }} />
 
         <Box sx={{ p: 4 }}>
           {/* Icon orb */}
@@ -86,14 +87,14 @@ export function StartCallCard({ onCallStarted }: StartCallCardProps) {
                   width: 80,
                   height: 80,
                   borderRadius: "50%",
-                  background: `radial-gradient(circle at 35% 35%, ${D.green}28, ${D.teal}14)`,
-                  border: `1.5px solid ${D.green}44`,
+                  background: `radial-gradient(circle at 35% 35%, ${M.yellowDark}28, ${M.teal}14)`,
+                  border: `1.5px solid ${M.yellowDark}44`,
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
                 }}
               >
-                <PhoneCall size={32} color={D.green} weight="fill" />
+                <PhoneCall size={32} color={M.yellowDark} weight="fill" />
               </Box>
               {/* Pulse rings */}
               {[1, 2].map((i) => (
@@ -103,7 +104,7 @@ export function StartCallCard({ onCallStarted }: StartCallCardProps) {
                     position: "absolute",
                     inset: 0,
                     borderRadius: "50%",
-                    border: `1px solid ${D.green}`,
+                    border: `1px solid ${M.yellowDark}`,
                     animation: "ring 2.5s ease-out infinite",
                     animationDelay: `${i * 0.9}s`,
                     "@keyframes ring": {
@@ -119,7 +120,7 @@ export function StartCallCard({ onCallStarted }: StartCallCardProps) {
           {/* Text */}
           <Typography
             sx={{
-              color: D.text,
+              color: M.text,
               fontWeight: 800,
               fontSize: "1.35rem",
               textAlign: "center",
@@ -129,7 +130,7 @@ export function StartCallCard({ onCallStarted }: StartCallCardProps) {
           >
             Start a New Call
           </Typography>
-          <Typography sx={{ color: D.textMuted, fontSize: "0.8rem", textAlign: "center", mb: 3.5 }}>
+          <Typography sx={{ color: M.textMuted, fontSize: "0.8rem", textAlign: "center", mb: 3.5 }}>
             Your complaint will be recorded and processed by AI
           </Typography>
 
@@ -139,19 +140,19 @@ export function StartCallCard({ onCallStarted }: StartCallCardProps) {
               display: "flex",
               alignItems: "center",
               gap: 1,
-              bgcolor: D.surfaceAlt,
-              border: `1px solid ${D.border}`,
+              bgcolor: M.surfaceAlt,
+              border: `1px solid ${M.border}`,
               borderRadius: "10px",
               px: 2,
               py: 1.25,
               mb: 3,
             }}
           >
-            <User size={14} color={D.textMuted} weight="fill" />
-            <Typography sx={{ color: D.textMuted, fontSize: "0.72rem", fontWeight: 600, letterSpacing: "0.06em" }}>
+            <User size={14} color={M.textMuted} weight="fill" />
+            <Typography sx={{ color: M.textMuted, fontSize: "0.72rem", fontWeight: 600, letterSpacing: "0.06em" }}>
               USER ID
             </Typography>
-            <Typography sx={{ color: D.teal, fontSize: "0.78rem", fontWeight: 700, ml: "auto", fontFamily: "monospace" }}>
+            <Typography sx={{ color: M.teal, fontSize: "0.78rem", fontWeight: 700, ml: "auto", fontFamily: "monospace" }}>
               {userId}
             </Typography>
           </Box>
@@ -163,16 +164,16 @@ export function StartCallCard({ onCallStarted }: StartCallCardProps) {
                 display: "flex",
                 alignItems: "flex-start",
                 gap: 1.25,
-                bgcolor: `${D.rose}12`,
-                border: `1px solid ${D.rose}33`,
+                bgcolor: `${M.rose}12`,
+                border: `1px solid ${M.rose}33`,
                 borderRadius: "10px",
                 px: 2,
                 py: 1.5,
                 mb: 2.5,
               }}
             >
-              <Warning size={16} color={D.rose} weight="fill" style={{ flexShrink: 0, marginTop: 2 }} />
-              <Typography sx={{ color: D.rose, fontSize: "0.78rem", lineHeight: 1.5 }}>{error}</Typography>
+              <Warning size={16} color={M.rose} weight="fill" style={{ flexShrink: 0, marginTop: 2 }} />
+              <Typography sx={{ color: M.rose, fontSize: "0.78rem", lineHeight: 1.5 }}>{error}</Typography>
             </Box>
           )}
 
@@ -188,9 +189,9 @@ export function StartCallCard({ onCallStarted }: StartCallCardProps) {
               border: "none",
               cursor: loading ? "not-allowed" : "pointer",
               background: loading
-                ? D.surfaceAlt
-                : `linear-gradient(135deg, ${D.green}, #16a34a)`,
-              color: loading ? D.textMuted : "#fff",
+                ? M.surfaceAlt
+                : `linear-gradient(135deg, ${M.yellowDark}, ${M.yellowDeep})`,
+              color: loading ? M.textMuted : "#fff",
               fontSize: "0.92rem",
               fontWeight: 700,
               letterSpacing: "0.02em",
@@ -200,17 +201,17 @@ export function StartCallCard({ onCallStarted }: StartCallCardProps) {
               justifyContent: "center",
               gap: "10px",
               transition: "all 0.2s",
-              boxShadow: loading ? "none" : `0 8px 24px ${D.green}30`,
+              boxShadow: loading ? "none" : `0 8px 24px ${M.yellowDark}30`,
               "&:hover:not(:disabled)": {
                 transform: "translateY(-2px)",
-                boxShadow: `0 12px 32px ${D.green}40`,
+                boxShadow: `0 12px 32px ${M.yellowDark}40`,
               },
               "&:active:not(:disabled)": { transform: "translateY(0)" },
             }}
           >
             {loading ? (
               <>
-                <CircularProgress size={18} sx={{ color: D.textMuted }} />
+                <CircularProgress size={18} sx={{ color: M.textMuted }} />
                 <span>Connecting…</span>
               </>
             ) : (
@@ -223,7 +224,7 @@ export function StartCallCard({ onCallStarted }: StartCallCardProps) {
         </Box>
       </Box>
 
-      <Typography sx={{ color: D.textFaint, fontSize: "0.68rem", mt: 2.5, letterSpacing: "0.06em" }}>
+      <Typography sx={{ color: M.textFaint, fontSize: "0.68rem", mt: 2.5, letterSpacing: "0.06em" }}>
         Your call will be encrypted and processed securely
       </Typography>
     </Box>

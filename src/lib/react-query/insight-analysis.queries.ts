@@ -8,7 +8,7 @@ export const useDashboardData = (page: number, pageSize: number) => {
       const res = await api.get(`/Dashboard/Get-All-Prediction?page=${page}&pageSize=${pageSize}`);
       return res.data;
     },
-    refetchInterval: 30_000,
+    refetchInterval: 5000,
     refetchIntervalInBackground: true,
   });
 };

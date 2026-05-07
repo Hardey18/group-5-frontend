@@ -15,6 +15,7 @@ import { Controller, useForm } from "react-hook-form";
 
 import { useUpdateProfile } from "@/lib/react-query/user.mutation";
 import { useCurrentUser } from "@/lib/react-query/user.queries";
+import { M } from "@/config/mtn-tokens";
 
 type FormValues = {
 	fullName: string;
@@ -57,7 +58,7 @@ export function AccountDetailsForm(): React.JSX.Element {
 				userId: user.userId,
 				fullName: values.fullName,
 				phoneNumber: values.phoneNumber,
-				profilePhotoUrl: "https://avatars.githubusercontent.com/u/91216500?v=4",
+				profilePhotoUrl: "https://as1.ftcdn.net/v2/jpg/11/41/78/70/1000_F_1141787063_lIVnG17OvyVcWz9udRvoQQ69iZA4ODMK.jpg",
 			},
 			{
 				onSuccess: () => {
@@ -124,7 +125,7 @@ export function AccountDetailsForm(): React.JSX.Element {
 				</CardContent>
 				<Divider />
 				<CardActions sx={{ justifyContent: "flex-end" }}>
-					<Button type="submit" disabled={isPending} variant="contained">
+					<Button type="submit" disabled={isPending} variant="contained" style={{background: `${M.yellowDark}`}}>
 						{isPending ? "Saving..." : "Save details"}
 					</Button>
 				</CardActions>

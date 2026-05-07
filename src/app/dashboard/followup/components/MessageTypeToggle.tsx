@@ -6,6 +6,7 @@ import { MessageType } from "@/types/followup";
 import { ChatText as SMSIcon } from "@phosphor-icons/react/dist/ssr/ChatText";
 import { Envelope as EmailIcon } from "@phosphor-icons/react/dist/ssr/Envelope";
 import { ChatCircle as WhatsAppIcon } from "@phosphor-icons/react/dist/ssr/ChatCircle";
+import { M } from "@/config/mtn-tokens";
 
 export function MessageTypeToggle({ value, onChange }: { 
   value: MessageType; 

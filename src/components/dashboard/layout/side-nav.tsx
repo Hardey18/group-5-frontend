@@ -16,6 +16,7 @@ import { Logo } from "@/components/core/logo";
 
 import { navItems } from "./config";
 import { navIcons } from "./nav-icons";
+import { M } from "@/config/mtn-tokens";
 
 export function SideNav(): React.JSX.Element {
 	const pathname = usePathname();
@@ -33,7 +34,7 @@ export function SideNav(): React.JSX.Element {
 				"--NavItem-icon-color": "var(--mui-palette-neutral-400)",
 				"--NavItem-icon-active-color": "var(--mui-palette-primary-contrastText)",
 				"--NavItem-icon-disabled-color": "var(--mui-palette-neutral-600)",
-				bgcolor: "var(--SideNav-background)",
+				bgcolor: "black",
 				color: "var(--SideNav-color)",
 				display: { xs: "none", lg: "flex" },
 				flexDirection: "column",
@@ -48,7 +49,7 @@ export function SideNav(): React.JSX.Element {
 				"&::-webkit-scrollbar": { display: "none" },
 			}}
 		>
-			<Stack spacing={2} sx={{ p: 3 }}>
+			<Stack spacing={2} sx={{ p: 3 }} style={{background: `${M.yellowDark}`}}>
 				<Link href={paths.home}>
 					<Box sx={{ display: "inline-flex" }}>
 						<Logo color="light" height={32} width={122} />
@@ -137,7 +138,7 @@ function NavItem({ disabled, external, href, icon, matcher, pathname, title }: N
 						color: "var(--NavItem-disabled-color)",
 						cursor: "not-allowed",
 					}),
-					...(active && { bgcolor: "#4ADE80", color: "#fff" }),
+					...(active && { bgcolor: M.yellowDark, color: "#fff" }),
 				}}
 			>
 				<Box sx={{ alignItems: "center", display: "flex", justifyContent: "center", flex: "0 0 auto" }}>

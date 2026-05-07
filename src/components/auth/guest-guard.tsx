@@ -27,12 +27,18 @@ export function GuestGuard({ children }: GuestGuardProps): React.JSX.Element | n
       return;
     }
 
-    if (user) {
+    console.log("OOKAY LETS SEE", user)
+
+    if (user?.userName === 'admin1') {
       logger.debug('[GuestGuard]: User is logged in, redirecting to dashboard');
-      router.replace(paths.dashboard.overview);
+      window.location.href = paths.dashboard.dashboard;
+      return;
+    } else if (user?.userName === 'cus1') {
+      logger.debug('[GuestGuard]: User is logged in, redirecting to dashboard');
+      window.location.href = paths.dashboard.call;
       return;
     }
-
+    
     setIsChecking(false);
   };
 

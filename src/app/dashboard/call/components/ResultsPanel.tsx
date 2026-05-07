@@ -12,6 +12,7 @@ import {
 import { AudioPlayer } from "./AudioPlayer";
 import { ComplaintPipelineResponse } from "@/types/call-pipeline";
 import { D } from "../config/call-design-tokens";
+import { M } from "@/config/mtn-tokens";
 // import { D } from "./call-design-tokens";
 
 interface ResultsPanelProps {
@@ -24,12 +25,12 @@ const CATEGORY_COLORS: Record<string, string> = {
   data:    D.teal,
   billing: D.amber,
   call:    D.indigo,
-  sim:     D.green,
+  sim:     M.yellowDark,
   other:   D.textMuted,
 };
 
 const SENTIMENT_CONFIG: Record<string, { color: string; icon: React.ReactNode }> = {
-  positive:   { color: D.green,  icon: <SmileyWink  size={14} weight="fill" /> },
+  positive:   { color: M.yellowDark,  icon: <SmileyWink  size={14} weight="fill" /> },
   neutral:    { color: D.sky,    icon: <SmileyMeh   size={14} weight="fill" /> },
   frustrated: { color: D.amber,  icon: <SmileySad   size={14} weight="fill" /> },
   angry:      { color: D.rose,   icon: <SmileyAngry size={14} weight="fill" /> },
@@ -50,7 +51,7 @@ function SectionCard({
     <Box
       sx={{
         bgcolor: D.surface,
-        border: `1px solid ${D.border}`,
+        border: `1px solid ${M.border}`,
         borderRadius: "16px",
         overflow: "hidden",
         transition: "border-color 0.2s",
@@ -65,7 +66,7 @@ function SectionCard({
           gap: 1.5,
           px: 3,
           py: 2,
-          borderBottom: `1px solid ${D.border}`,
+          borderBottom: `1px solid ${M.border}`,
           bgcolor: D.surfaceAlt,
         }}
       >
@@ -84,7 +85,7 @@ function SectionCard({
         >
           {icon}
         </Box>
-        <Typography sx={{ color: D.text, fontWeight: 700, fontSize: "0.88rem", letterSpacing: "-0.01em" }}>
+        <Typography sx={{ color: M.text, fontWeight: 700, fontSize: "0.88rem", letterSpacing: "-0.01em" }}>
           {title}
         </Typography>
       </Box>
@@ -174,10 +175,10 @@ export function ResultsPanel({ data, onReset }: ResultsPanelProps) {
 
         {/* Summary */}
         <Box sx={{ mb: 3 }}>
-          <Typography sx={{ color: D.textMuted, fontSize: "0.65rem", fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", mb: 1 }}>
+          <Typography sx={{ color: M.textMuted, fontSize: "0.65rem", fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", mb: 1 }}>
             Summary
           </Typography>
-          <Typography sx={{ color: D.text, fontSize: "0.85rem", lineHeight: 1.7 }}>
+          <Typography sx={{ color: M.text, fontSize: "0.85rem", lineHeight: 1.7 }}>
             {analysis?.summary || "No summary available."}
           </Typography>
         </Box>
@@ -188,7 +189,7 @@ export function ResultsPanel({ data, onReset }: ResultsPanelProps) {
             {
               label: "Nigerian Pidgin Response",
               content: analysis?.response,
-              color: D.teal,
+              color: M.teal,
             },
             {
               label: "Formal English Response",

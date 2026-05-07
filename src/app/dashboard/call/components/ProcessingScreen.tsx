@@ -6,6 +6,7 @@ import Typography from "@mui/material/Typography";
 import Stack from "@mui/material/Stack";
 import { CheckCircle, Circle, Spinner } from "@phosphor-icons/react";
 import { D } from "../config/call-design-tokens";
+import { M } from "@/config/mtn-tokens";
 // import { D } from "./call-design-tokens";
 
 const STEPS = [
@@ -57,7 +58,7 @@ export function ProcessingScreen() {
               left: 0,
               height: "100%",
               width: `${progress}%`,
-              background: `linear-gradient(90deg, ${D.indigo}, ${D.teal})`,
+              background: `linear-gradient(90deg, ${M.yellowDark}, ${M.yellowMid})`,
               borderRadius: "0 4px 4px 0",
               transition: "width 0.8s cubic-bezier(0.4, 0, 0.2, 1)",
             }}
@@ -75,8 +76,8 @@ export function ProcessingScreen() {
                     width: 72,
                     height: 72,
                     borderRadius: "50%",
-                    background: `radial-gradient(circle at 35% 35%, ${D.indigo}28, ${D.teal}14)`,
-                    border: `1.5px solid ${D.indigo}44`,
+                    background: `radial-gradient(circle at 35% 35%, ${M.yellowDark}28, ${M.yellowMid}14)`,
+                    border: `1.5px solid ${M.yellowDark}44`,
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
@@ -92,8 +93,8 @@ export function ProcessingScreen() {
                     inset: -4,
                     borderRadius: "50%",
                     border: `2px solid transparent`,
-                    borderTopColor: D.indigo,
-                    borderRightColor: D.teal,
+                    borderTopColor: M.yellowDark,
+                    borderRightColor: M.yellowMid,
                     animation: "spin 1.2s linear infinite",
                     "@keyframes spin": { to: { transform: "rotate(360deg)" } },
                   }}
@@ -134,8 +135,8 @@ export function ProcessingScreen() {
                     py: 1.5,
                     px: 2,
                     borderRadius: "10px",
-                    bgcolor: isActive ? `${D.indigo}10` : "transparent",
-                    border: `1px solid ${isActive ? D.indigo + "30" : "transparent"}`,
+                    bgcolor: isActive ? `${M.yellowDark}10` : "transparent",
+                    border: `1px solid ${isActive ? M.yellowDark + "30" : "transparent"}`,
                     mb: 1,
                     transition: "all 0.4s ease",
                     animation: isActive
@@ -150,7 +151,7 @@ export function ProcessingScreen() {
                   {/* Icon */}
                   <Box sx={{ flexShrink: 0, width: 22, height: 22, display: "flex", alignItems: "center", justifyContent: "center" }}>
                     {isCompleted ? (
-                      <CheckCircle size={22} color={D.green} weight="fill" />
+                      <CheckCircle size={22} color={M.yellowDark} weight="fill" />
                     ) : isActive ? (
                       <Box
                         sx={{
@@ -159,7 +160,7 @@ export function ProcessingScreen() {
                           display: "flex",
                         }}
                       >
-                        <Spinner size={22} color={D.indigo} weight="bold" />
+                        <Spinner size={22} color={M.yellowDark} weight="bold" />
                       </Box>
                     ) : (
                       <Circle size={22} color={D.textFaint} />
@@ -170,7 +171,7 @@ export function ProcessingScreen() {
                   <Box sx={{ flex: 1 }}>
                     <Typography
                       sx={{
-                        color: isCompleted ? D.green : isActive ? D.text : D.textMuted,
+                        color: isCompleted ? M.yellowDark : isActive ? D.text : D.textMuted,
                         fontSize: "0.85rem",
                         fontWeight: isActive ? 700 : isCompleted ? 600 : 400,
                         lineHeight: 1.2,
@@ -181,7 +182,7 @@ export function ProcessingScreen() {
                     </Typography>
                     <Typography
                       sx={{
-                        color: isCompleted ? D.green + "99" : D.textFaint,
+                        color: isCompleted ? M.yellowDark + "99" : D.textFaint,
                         fontSize: "0.65rem",
                         fontWeight: 600,
                         letterSpacing: "0.06em",
@@ -195,14 +196,14 @@ export function ProcessingScreen() {
 
                   {/* Right indicator */}
                   {isCompleted && (
-                    <Typography sx={{ color: D.green + "80", fontSize: "0.65rem", fontWeight: 700, letterSpacing: "0.06em" }}>
+                    <Typography sx={{ color: M.yellowDark + "80", fontSize: "0.65rem", fontWeight: 700, letterSpacing: "0.06em" }}>
                       DONE
                     </Typography>
                   )}
                   {isActive && (
                     <Typography
                       sx={{
-                        color: D.indigo,
+                        color: M.yellowDark,
                         fontSize: "0.65rem",
                         fontWeight: 700,
                         letterSpacing: "0.06em",
